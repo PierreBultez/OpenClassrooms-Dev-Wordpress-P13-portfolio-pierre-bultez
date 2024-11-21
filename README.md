@@ -1,1 +1,2 @@
-# OpenClassrooms-Dev-Wordpress-P13-portfolio-pierre-bultez
+# Créez et publiez votre portfolio de développeur
+# 
