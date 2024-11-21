@@ -1,0 +1,1 @@
+console.log('prise en charge des scripts custom');
