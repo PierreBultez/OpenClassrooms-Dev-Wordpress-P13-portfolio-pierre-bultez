@@ -20,12 +20,30 @@ get_header();
             </p>
         </div>
         <div class="hero-left-button">
-            <a href="https://github.com/PierreBultez/OpenClassrooms-Dev-Wordpress-P11-nathalie-mota" target="_blank">
-                <img src="/wp-content/uploads/2024/11/code_1.webp" alt="">
-            </a>
-            <a href="https://motaphoto.pierrebultez.com/" target="_blank">
-                <img src="/wp-content/uploads/2024/11/live.webp" alt="">
-            </a>
+            <?php
+            // Récupère l'URL à partir du champ ACF
+            $url = get_field('code_url');
+
+            if ($url) {
+                // Affiche un bouton avec l'URL dynamique
+                echo '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer">
+                    <img src="/wp-content/uploads/2024/11/code_1.webp" alt="image d\' un bouton CODE écriture noire sur fond rouge dirigeant vers le code source du projet.">
+                </a>';
+            }
+            ?>
+
+            <?php
+            // Récupère l'URL à partir du champ ACF
+            $url = get_field('live_url');
+
+            if ($url) {
+                // Affiche un bouton avec l'URL dynamique
+                echo '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer">
+                    <img src="/wp-content/uploads/2024/11/live.webp" alt="image d\' un bouton LIVE écriture noire sur fond rouge dirigeant vers le site en ligne du projet.">
+                </a>';
+            }
+            ?>
+
         </div>
         <div class="hero-left-logo">
             <?php
