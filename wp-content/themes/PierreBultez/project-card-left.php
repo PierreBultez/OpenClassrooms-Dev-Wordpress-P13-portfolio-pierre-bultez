@@ -1,12 +1,3 @@
-<?php
-/**
- * Template Name: Single Projects
- * Description: Template par défaut pour afficher les projets.
- */
-
-get_header();
-?>
-
 <section class="project">
     <div class="project-left">
         <div class="project-left-text">
@@ -78,5 +69,3 @@ get_header();
         ?>
     </div>
 </section>
-
-<?php get_footer(); ?>

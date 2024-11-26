@@ -4,7 +4,7 @@ function pierrebultez_init() {
 
     register_taxonomy(
         'technologies', // Slug de la taxonomie
-        'projects',      // Associe la taxonomie au CPT "projets"
+'projects',
         [
             'labels' => [
                 'name' => 'Technologies',
@@ -43,6 +43,52 @@ function pierrebultez_init() {
         'public' => true,
         'menu_icon' => 'dashicons-html',
         'menu_position' => 3,
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
+    ]);
+
+    register_post_type('testimonials', [
+        'labels' => [
+            'name' => 'Appréciations',
+            'singular_name' => 'Appréciation',
+            'menu_name' => 'Appréciations',
+            'add_new_item' => 'Ajouter une nouvelle appréciation',
+            'edit_item' => "Modifier l'appréciation",
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'supports' => ['title', 'editor'], // Titre et contenu (texte du témoignage)
+        'menu_icon' => 'dashicons-format-quote', // Icône dans le menu admin
+        'menu_position' => 4,
+    ]);
+
+    register_post_type('software', [
+        'labels' => [
+            'name' => 'Logiciels',
+            'singular_name' => 'Logiciel',
+            'menu_name' => 'Logiciels',
+            'add_new_item' => 'Ajouter un nouveau logiciel',
+            'edit_item' => "Modifier le logiciel",
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
+        'menu_icon' => 'dashicons-hammer',
+        'menu_position' => 5,
+    ]);
+
+    register_post_type('sysadmin', [
+        'labels' => [
+            'name' => 'Administration système',
+            'singular_name' => 'Administration système',
+            'menu_name' => 'Administration système',
+            'add_new_item' => "Ajouter un nouvel outil d'administration système",
+            'edit_item' => "Modifier l'outil d'administration système",
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
+        'menu_icon' => 'dashicons-superhero',
+        'menu_position' => 5,
     ]);
 }
 
@@ -51,6 +97,9 @@ add_action('init', 'pierrebultez_init');
 function pierrebultez_setup () {
     // Ajoute la prise en charge du titre de la page
     add_theme_support('title-tag');
+
+    // Ajoute la prise en charge des images à la une dans les posts
+    add_theme_support('post-thumbnails');
 
     // Enregistre les menus de navigation
     register_nav_menus(array(
@@ -85,6 +134,7 @@ function pierrebultez_register_assets(): void {
         'pierrebultez' => get_stylesheet_directory_uri() . '/style.css',
         'fontawesome' => get_stylesheet_directory_uri() . '/assets/fontawesome/css/fontawesome.css',
         'fontawesome-all' => get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css',
+        'swiper-css' => 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
     ];
 
     // Enregistrer et inclure chaque style
@@ -96,6 +146,7 @@ function pierrebultez_register_assets(): void {
     // Définir les scripts à enregistrer et à inclure
     $scripts = [
         'pierrebultez-scripts' => get_stylesheet_directory_uri() . '/scripts/scripts.js',
+        'swiper-js' => 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true,
     ];
 
     // Enregistrer et inclure chaque script
@@ -129,6 +180,13 @@ function custom_meta_description_box()
         'Meta Description',
         'custom_meta_description_callback',
         'projects',
+        'side'
+    );
+    add_meta_box(
+        'meta_description_id',
+        'Meta Description',
+        'custom_meta_description_callback',
+        'testimonials',
         'side'
     );
 }

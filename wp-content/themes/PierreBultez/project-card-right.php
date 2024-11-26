@@ -1,13 +1,13 @@
-<?php
-/**
- * Template Name: Single Projects
- * Description: Template par défaut pour afficher les projets.
- */
-
-get_header();
-?>
-
 <section class="project">
+    <div class="project-right">
+        <?php
+        if (has_post_thumbnail()) {
+            the_post_thumbnail('card', ['alt' => esc_attr(get_the_title())]);
+        } else {
+            echo '<img src="/wp-content/uploads/2024/11/fallback.webp" alt="Image par défaut affichant le texte Coming soon ...">';
+        }
+        ?>
+    </div>
     <div class="project-left">
         <div class="project-left-text">
 
@@ -68,15 +68,4 @@ get_header();
 
         </div>
     </div>
-    <div class="project-right">
-        <?php
-        if (has_post_thumbnail()) {
-            the_post_thumbnail('card', ['alt' => esc_attr(get_the_title())]);
-        } else {
-            echo '<img src="/wp-content/uploads/2024/11/fallback.webp" alt="Image par défaut affichant le texte Coming soon ...">';
-        }
-        ?>
-    </div>
 </section>
-
-<?php get_footer(); ?>
