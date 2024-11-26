@@ -140,10 +140,161 @@ header {
     gap: 6.25rem;
     padding: 1.875rem;
     width: 100%;
+    margin-bottom: 1.875rem;
 }
 
 .section-title {
     font-size: 3rem;
+}
+
+.bio {
+    margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
+}
+
+.bio-card {
+    width: 100%;
+    margin-top: 3.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.125rem;
+}
+
+.bio-text {
+    width: 70%;
+}
+
+.bio-content {
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    align-self: flex-end;
+    gap: 1.25rem;
+}
+
+.bio-social {
+    font-size: 1.875rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.875rem;
+}
+
+.bio-social .github {
+    color: #171515;
+}
+
+.bio-social .github:hover {
+    color: #968989;
+}
+
+.bio-social .linkedin {
+    color: #007BB5;
+}
+
+.bio-social .linkedin:hover {
+    color: #00A0DC;
+}
+
+.bio-social .facebook {
+    color: #3b5998;
+}
+
+.bio-social .facebook:hover {
+    color: #5E9EFA;
+}
+
+.bio-button button, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-next-default>button, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-back-default>button, .quform-theme-light .quform-button-style-theme .quform-upload-button, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-submit-default>button {
+    background-color: var(--second-accentuation);
+    color: var(--background-color);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 0 3.125rem;
+    border-radius: 10px;
+}
+
+.bio-button button:hover, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-next-default>button:hover, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-back-default>button:hover, .quform-theme-light .quform-button-style-theme .quform-upload-button:hover, .quform-theme-light .quform-element-submit.quform-button-style-theme>.quform-button-submit-default>button:hover {
+    background-color: var(--first-accentuation);
+    color: var(--background-color);
+}
+
+.software {
+    width: 100%;
+    margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.software-title {
+    align-self: flex-start;
+}
+
+.software-box {
+    display: flex;
+    justify-content: center;
+    gap: 3.125rem;
+    align-items: flex-start;
+    margin: 3.125rem auto 0 auto;
+}
+
+.software-icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.25rem;
+    width: 50%;
+}
+
+.software-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.313rem;
+}
+
+.software-icon img {
+    width: 50%;
+}
+
+.software-name {
+    background-color: rgba(72, 185, 179, 0.7); /* Fond semi-transparent */
+    color: var(--background-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    font-weight: 700;
+}
+
+.software-icon:hover .software-name {
+    opacity: 1;
+}
+
+.sysadmin-name {
+    background-color: rgba(255, 59, 63, 0.7); /* Fond semi-transparent */
+    color: var(--background-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    font-weight: 700;
+}
+
+.software-icon:hover .sysadmin-name {
+    opacity: 1;
+}
+
+.software-text {
+    width: 50%;
 }
 
 .homepage-projects {
@@ -153,6 +304,7 @@ header {
     align-items: center;
     justify-content: flex-start;
     margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
 }
 
 .homepage-projects-title {
@@ -240,6 +392,7 @@ header {
     width: 100%;
     height: 100%;
     margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
 }
 
 .swiper {
@@ -253,91 +406,73 @@ header {
     font-size: 18px;
     border-radius: 10px;
     padding: 10px;
-    /* Ombre extérieure */
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1),
-        /* Ombre intérieure */
-    inset 0 0 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--fourth-accentuation);
 }
 
-.software {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.software-title {
-    align-self: flex-start;
-}
-
-.software-box {
-    display: flex;
-    justify-content: center;
-    gap: 3.125rem;
-    align-items: flex-start;
-    margin: 3.125rem auto;
-}
-
-.software-icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 1.25rem;
-    width: 50%;
-}
-
-.software-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.313rem;
-}
-
-.software-icon img {
-    width: 50%;
-}
-
-.software-name {
-    background-color: rgba(72, 185, 179, 0.7); /* Fond semi-transparent */
+blockquote p {
     color: var(--background-color);
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    font-weight: 700;
 }
 
-.software-icon:hover .software-name {
-    opacity: 1;
+cite {
+    color: var(--first-accentuation);
 }
 
-.sysadmin-name {
-    background-color: rgba(255, 59, 63, 0.7); /* Fond semi-transparent */
+.contact {
+    width: 80%;
+}
+
+.quform-option-icon, .quform-option-icon-selected {
+    margin-right: 1rem;
+}
+
+.quform-theme-light .quform-group-style-bordered>.quform-spacer>.quform-child-elements {
+    background-color: var(--fourth-accentuation);
+}
+
+.quform-label-icon, .quform-theme-light .quform-label>label, .quform-sub-label, .quform-theme-light .quform-description {
     color: var(--background-color);
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    font-weight: 700;
 }
 
-.software-icon:hover .sysadmin-name {
-    opacity: 1;
-}
-
-.software-text {
-    width: 50%;
-}
-
-.rust {
-    font-family: "nexa-rust-sans-black-shad-2", sans-serif;
-    font-weight: 900;
-    font-style: normal;
+.quform-theme-light .quform-field-text:active, .quform-theme-light .quform-field-text:focus, .quform-theme-light .select2-container--quform.select2-container--open .select2-selection, .quform-theme-light.select2-container--quform .select2-dropdown--above, .quform-theme-light .select2-container--quform .select2-selection, .quform-theme-light .quform-field-text, .quform-theme-light .quform-field-email, .quform-theme-light .quform-field-email:active, .quform-theme-light .quform-field-email:focus {
+    border-color: var(--second-accentuation);
+    box-shadow: var(--second-accentuation);
+    -webkit-box-shadow: var(--second-accentuation);
     color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.quform-theme-light .quform-field-textarea, .quform-theme-light .quform-field-textarea:active, .quform-theme-light .quform-field-textarea:focus, .quform-theme-light .quform-page-progress-bar {
+    background-color: var(--fourth-accentuation);
+    color: var(--background-color);
+}
+
+.quform-theme-light .quform-page-progress {
+    background-color: var(--background-color);
+    border: 1px solid var(--fourth-accentuation);
+}
+
+.quform-theme-light .quform-field-textarea:active, .quform-theme-light .quform-field-textarea:focus {
+    border-color: var(--second-accentuation);
+    box-shadow: var(--second-accentuation);
+    -webkit-box-shadow: var(--second-accentuation);
+}
+
+.quform-theme-light.select2-container--quform .select2-results__option--highlighted[aria-selected], .quform-theme-light.select2-container--quform .select2-results__option, .quform-theme-light .quform-field-icon {
+    color: var(--text-color);
+}
+
+.quform-theme-light.select2-container--quform .select2-results__option--highlighted[aria-selected] {
+    background-color: rgba(72, 185, 179, 0.7);
+    border-color: var(--second-accentuation);
+}
+
+.quform-theme-light.select2-container--quform .select2-search--dropdown .select2-search__field {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.quform-theme-light {
+    color: var(--background-color);
 }
 
 .rust-script {
