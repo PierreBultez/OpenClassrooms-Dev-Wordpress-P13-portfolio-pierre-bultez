@@ -16,7 +16,7 @@
             </div>
             <div class="bio-content">
                 <div class=" bio-pic">
-                    <img src="/wp-content/uploads/2024/11/pierre-bultez-resized.webp" alt="#">
+                    <img src="/wp-content/uploads/2024/11/pierre-bultez-resized-blue.webp" alt="#">
                 </div>
                 <div class="bio-social">
                     <a href="https://github.com/PierreBultez" target="_blank" class="github"><i class="fa-brands fa-github"></i></a>
@@ -109,50 +109,9 @@
         </div>
     </section>
 
-<?php
-// Début de la section dédiée aux projets
-echo '<section class="homepage-projects">';
-?>
-
-<div class="homepage-projects-title">
-    <h2 class="rust-script section-title">Projets</h2>
-</div>
-
-<?php
-
-// Requête pour récupérer les projets
-$args = [
-    'post_type'      => 'projects',
-    'posts_per_page' => 3,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-];
-
-$query = new WP_Query($args);
-$i = 0; // Compteur pour alterner les templates
-
-if ($query->have_posts()) :
-    while ($query->have_posts()) :
-        $query->the_post();
-
-        // Alterne entre deux templates
-        if ($i % 2 === 0) {
-            get_template_part('project-card-left');
-        } else {
-            get_template_part('project-card-right');
-        }
-
-        $i++; // Incrémente le compteur
-    endwhile;
-else :
-    echo '<p>Aucun projet trouvé.</p>';
-endif;
-
-// Réinitialise la requête principale
-wp_reset_postdata();
-
-echo '</section>';
-?>
+<section class="homepage-projects">
+    <p>Chargement des projets...</p>
+</section>
 
 <section class="testimonials-slider">
     <h2 class="rust-script section-title">Témoignages</h2>
@@ -190,7 +149,5 @@ echo '</section>';
 <section class="contact" id="contact">
     <?php echo do_shortcode('[quform id="1" name="Proposition de job"]'); ?>
 </section>
-
-
 
 <?php get_footer(); ?>

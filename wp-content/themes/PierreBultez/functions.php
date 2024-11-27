@@ -129,7 +129,7 @@ function pierrebultez_setup () {
 add_action('after_setup_theme', 'pierrebultez_setup');
 
 function pierrebultez_register_assets(): void {
-    // Définir les styles à enregistrer et à inclure
+    // Styles
     $styles = [
         'pierrebultez' => get_stylesheet_directory_uri() . '/style.css',
         'fontawesome' => get_stylesheet_directory_uri() . '/assets/fontawesome/css/fontawesome.css',
@@ -137,27 +137,75 @@ function pierrebultez_register_assets(): void {
         'swiper-css' => 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
     ];
 
-    // Enregistrer et inclure chaque style
     foreach ($styles as $handle => $src) {
         wp_register_style($handle, $src);
         wp_enqueue_style($handle);
     }
 
-    // Définir les scripts à enregistrer et à inclure
+    // Scripts
     $scripts = [
         'pierrebultez-scripts' => get_stylesheet_directory_uri() . '/scripts/scripts.js',
-        'swiper-js' => 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true,
+        'swiper-js' => 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
     ];
 
-    // Enregistrer et inclure chaque script
     foreach ($scripts as $handle => $src) {
-        wp_register_script($handle, $src, ['jquery'], false, true);
+        wp_register_script($handle, $src, ['jquery'], null, true);
         wp_enqueue_script($handle);
     }
-}
 
-// Action pour enregistrer et inclure les styles et scripts
+    // Localiser les variables AJAX
+    wp_localize_script('pierrebultez-scripts', 'ajax_params', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+}
 add_action('wp_enqueue_scripts', 'pierrebultez_register_assets');
+
+function load_projects_ajax() {
+    // Vérifie et récupère la largeur d'écran
+    $screen_width = isset($_POST['screen_width']) ? intval($_POST['screen_width']) : 1440;
+
+    // Requête pour récupérer les projets
+    $args = [
+        'post_type'      => 'projects',
+        'posts_per_page' => 3,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ];
+
+    $query = new WP_Query($args);
+    $i = 0; // Compteur pour alterner les templates
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) :
+            $query->the_post();
+
+            // Si la largeur est inférieure à 1440px, utilise un seul template
+            if ($screen_width < 1440) {
+                get_template_part('project-card-left');
+            } else {
+                // Alterne entre deux templates
+                if ($i % 2 === 0) {
+                    get_template_part('project-card-left');
+                } else {
+                    get_template_part('project-card-right');
+                }
+            }
+
+            $i++; // Incrémente le compteur
+        endwhile;
+    else :
+        echo '<p>Aucun projet trouvé.</p>';
+    endif;
+
+    // Réinitialise la requête principale
+    wp_reset_postdata();
+
+    // Stoppe le script pour éviter d'envoyer des données supplémentaires
+    wp_die();
+}
+add_action('wp_ajax_load_projects', 'load_projects_ajax');
+add_action('wp_ajax_nopriv_load_projects', 'load_projects_ajax');
+
 
 function custom_meta_description_box()
 {
