@@ -1,13 +1,18 @@
 <?php get_header(); ?>
 
+<section class="site-title">
+    <h1 class="site-title-text">
+        Création et hébergement de sites web dans le Vaucluse
+    </h1>
+</section>
+
 <section class="bio">
         <div class="bio-title">
             <h2 class="rust-script section-title">Biographie</h2>
         </div>
         <div class="bio-card">
             <div class="bio-text">
-                <h1>Pierre Bultez</h1>
-                <h2>Développeur Front-end Junior</h2>
+                <h3>Développeur Front-end Junior</h3>
                 <br>
                 <p><strong>Passionné</strong> par le web et <strong>autodidacte</strong>, j’ai commencé mon parcours en apprenant seul les bases du <strong>développement</strong> et de l’<strong>administration de sites</strong>. De la création de sites avec des CMS comme <strong>WordPress</strong> ou <strong>Magento</strong> à leur mise en ligne et leur <strong>hébergement</strong>, j’ai acquis une expérience pratique qui m’a permis de développer une compréhension globale des enjeux du web. J’ai également exploré d’autres outils comme <strong>Prestashop</strong>, touchant à différents aspects de l’écosystème numérique.</p>
                 <p>Animé par une envie de reconversion professionnelle et désireux de transformer ma passion en métier, j’ai entrepris une formation structurée pour reprendre les bases fondamentales : <strong>HTML, CSS, SASS, PHP, JavaScript</strong> et une maîtrise avancée de <strong>WordPress</strong>. Cet investissement m’a permis d’obtenir un titre professionnel de <strong>niveau 5 (Bac+2)</strong>, validant mes compétences et me donnant la confiance nécessaire pour me lancer dans l’aventure professionnelle.</p>
@@ -19,9 +24,18 @@
                     <img src="/wp-content/uploads/2024/11/pierre-bultez-resized-blue.webp" alt="#">
                 </div>
                 <div class="bio-social">
-                    <a href="https://github.com/PierreBultez" target="_blank" class="github"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/pierre-bultez-5699b52a8/" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61564566744970" target="_blank" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://github.com/PierreBultez" target="_blank" class="github">
+                        <i class="fa-brands fa-github"></i>
+                        <span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pierre-bultez-5699b52a8/" target="_blank" class="linkedin">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span class="sr-only">Linkedin</span>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61564566744970" target="_blank" class="facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span class="sr-only">facebook</span>
+                    </a>
                 </div>
                 <div class="bio-button">
                     <a href="#contact" target="_self"><button class="cta" type="button">Contact</button></a>
@@ -109,6 +123,9 @@
         </div>
     </section>
 
+<div class="homepage-projects-title">
+    <h2 class="rust-script section-title">Projets</h2>
+</div>
 <section class="homepage-projects">
     <p>Chargement des projets...</p>
 </section>
@@ -147,7 +164,7 @@
 </section>
 
 <section class="contact" id="contact">
-    <?php echo do_shortcode('[quform id="1" name="Proposition de job"]'); ?>
+    <?php echo do_shortcode('[quform id="2" name="Proposition de job"]'); ?>
 </section>
 
 <?php get_footer(); ?>

@@ -275,6 +275,7 @@ function get_dynamic_meta_description()
         $category_description = category_description();
         return esc_attr($category_description);
     } else {
-        return "Découvrez Pierre Bultez, développeur freelance junior spécialisé en développement front-end et hébergement web. Basé dans le Vaucluse, j'accompagne vos projets web à Orange, Avignon, Carpentras et au-delà. Création de sites modernes, performants et adaptés à vos besoins.";
+        return "Pierre Bultez, développeur freelance junior spécialisé en développement front-end et hébergement web. Basé dans le Vaucluse, j'accompagne vos projets web à Orange, Avignon, Carpentras et au-delà. Création de sites modernes, performants et adaptés à vos besoins.";
     }
 }
+
