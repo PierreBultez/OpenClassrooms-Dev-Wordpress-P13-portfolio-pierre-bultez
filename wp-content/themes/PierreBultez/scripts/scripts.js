@@ -31,6 +31,7 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 // Met à jour le contenu des projets
                 $('.homepage-projects').html(response);
+                updateIconsAfterAjax(); // Redétecter et mettre à jour les icônes après AJAX
             },
             error: function (error) {
                 console.error('Erreur lors du chargement des projets:', error);
@@ -41,6 +42,7 @@ jQuery(document).ready(function ($) {
     // Détection de la largeur initiale
     let currentWidth = window.innerWidth;
     loadProjects(currentWidth);
+    updateIconsAfterAjax(); // Assurez-vous que les icônes sont correctement détectées après le premier chargement
 
     // Écoute les changements de taille de la fenêtre
     $(window).on('resize', function () {
@@ -56,6 +58,21 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    function updateIconsAfterAjax() {
+        const updatedIcons = document.querySelectorAll('.technology-icon');
+        console.log("Updated icons:", updatedIcons);
+        updatedIcons.forEach(icon => {
+            if (localStorage.getItem('theme') === 'dark') {
+                icon.src = icon.getAttribute('data-dark');
+            } else {
+                icon.src = icon.getAttribute('data-light');
+            }
+        });
+        // Réappliquez les changements avec switchIcons pour être sûr
+        const currentTheme = localStorage.getItem('theme');
+        switchIcons(currentTheme);
+    }
+
     const toggleSwitch = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme');
     const logo = document.getElementById('site-logo');
@@ -65,29 +82,52 @@ jQuery(document).ready(function ($) {
     const lightModeTagline = '/wp-content/uploads/2024/11/tagline_resized.webp';
     const darkModeTagline = 'wp-content/uploads/2024/11/tagline-resized-dark-mode.webp';
 
-    // Applique le thème si une préférence existe
-    if (currentTheme === 'dark') {
-        document.documentElement.classList.add('dark-mode');
-        toggleSwitch.checked = true;
-        logo.src = darkModeLogo;       // Change le logo pour le mode sombre
-        tagline.src = darkModeTagline; // Change la tagline pour le mode sombre
-    } else {
-        logo.src = lightModeLogo;       // Par défaut, mode clair
-        tagline.src = lightModeTagline; // Par défaut, tagline normale
+    // Fonction pour changer les icônes des technologies
+    function switchIcons(theme) {
+        const icons = document.querySelectorAll('.technology-icon'); // Toujours récupérer les icônes actuelles
+        icons.forEach(icon => {
+            console.log(`Switching icon: ${icon.src}`);
+            if (theme === 'dark') {
+                icon.src = icon.getAttribute('data-dark'); // Change l'icône pour le mode sombre
+            } else {
+                icon.src = icon.getAttribute('data-light'); // Reviens à l'icône du mode clair
+            }
+            console.log("Updated src:", icon.src);
+        });
     }
 
-// Ajoute un événement pour basculer le thème
-    toggleSwitch.addEventListener('change', () => {
-        if (toggleSwitch.checked) {
+// Fonction pour basculer tous les éléments (logo, tagline, icônes)
+    function switchTheme(theme) {
+        if (theme === 'dark') {
             document.documentElement.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
             logo.src = darkModeLogo;       // Change le logo pour le mode sombre
             tagline.src = darkModeTagline; // Change la tagline pour le mode sombre
+            switchIcons('dark');           // Change les icônes des technologies pour le mode sombre
+            localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
             logo.src = lightModeLogo;       // Reviens au logo normal
             tagline.src = lightModeTagline; // Reviens à la tagline normale
+            switchIcons('light');           // Reviens aux icônes du mode clair
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+// Applique le thème et les icônes si une préférence existe
+    if (currentTheme === 'dark') {
+        switchTheme('dark');
+        switchIcons('dark'); // Applique les icônes immédiatement
+    } else {
+        switchTheme('light');
+        switchIcons('light'); // Applique les icônes immédiatement
+    }
+
+// Ajoute un événement pour basculer le thème lors du changement de l’interrupteur
+    toggleSwitch.addEventListener('change', () => {
+        if (toggleSwitch.checked) {
+            switchTheme('dark');
+        } else {
+            switchTheme('light');
         }
     });
 

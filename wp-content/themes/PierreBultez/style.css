@@ -163,7 +163,6 @@ header {
 
 /* ******************************************************************************** */
 
-
 .theme-switcher {
     position: fixed;
     top: 30px;
@@ -218,14 +217,7 @@ header {
     transition: opacity 1s ease;
 }
 
-
-
 /* ******************************************************************************** */
-
-
-
-
-
 
 .section-title {
     font-size: 3rem;
@@ -588,6 +580,10 @@ cite {
 .page-content {
     width: 80%;
     margin: 50px auto;
+}
+
+footer {
+    margin: 3.125rem auto;
 }
 
 .footer-links {

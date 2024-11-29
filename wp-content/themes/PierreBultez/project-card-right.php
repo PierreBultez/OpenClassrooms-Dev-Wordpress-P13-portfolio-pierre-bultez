@@ -46,26 +46,27 @@
             $technologies = get_the_terms(get_the_ID(), 'technologies');
 
             if ($technologies && !is_wp_error($technologies)) {
-
-                // Parcours chaque technologie et affiche son icône
+                // Parcours chaque technologie et affiche ses icônes pour les deux modes
                 foreach ($technologies as $tech) {
-                    // Récupère l'image associée via ACF
-                    $icon_id = get_field('icone_technologie', 'term_' . $tech->term_id);
-                    if ($icon_id) {
-                        // Affiche l'image avec sa taille définie
-                        echo wp_get_attachment_image($icon_id, '', false, [
-                            'alt' => esc_attr($tech->name), // Texte alternatif de l'image
-                        ]);
+                    $icon_light_id = get_field('icone_technologie_light', 'term_' . $tech->term_id);
+                    $icon_dark_id = get_field('icone_technologie_dark', 'term_' . $tech->term_id);
+
+                    // Génère les URLs des icônes
+                    $icon_light_url = $icon_light_id ? wp_get_attachment_url($icon_light_id) : '';
+                    $icon_dark_url = $icon_dark_id ? wp_get_attachment_url($icon_dark_id) : '';
+
+                    if ($icon_light_url && $icon_dark_url) {
+                        echo '<img class="technology-icon" 
+                           src="' . esc_url($icon_light_url) . '" 
+                           data-dark="' . esc_url($icon_dark_url) . '" 
+                           data-light="' . esc_url($icon_light_url) . '" 
+                           alt="' . esc_attr($tech->name) . '">';
                     } else {
-                        // Affiche le nom de la technologie si aucune icône n’est définie
                         echo '<span>' . esc_html($tech->name) . '</span>';
                     }
                 }
-
-                echo '</div>';
             }
             ?>
-
         </div>
     </div>
 </section>
